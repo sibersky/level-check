@@ -1,0 +1,6 @@
+{
+  "name": "Level Check — Teacher Alex",
+  "description": "Free CEFR English & Spanish placement test, quick diagnostic quiz, and curated directory of verified proficiency assessments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

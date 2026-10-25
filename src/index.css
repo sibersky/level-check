@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color Palette - Brand */
+  --color-brand-50: #eef0f7;
+  --color-brand-100: #d4d9ec;
+  --color-brand-200: #b0b8dc;
+  --color-brand-300: #8894cb;
+  --color-brand-400: #6674ba;
+  --color-brand-500: #4a57a9;
+  --color-brand-600: #1a2e6d;
+  --color-brand-700: #162456;
+  --color-brand-800: #121c40;
+  --color-brand-900: #0e1429;
+
+  /* Color Palette - Accent */
+  --color-accent-50: #edfafa;
+  --color-accent-100: #d5f0f0;
+  --color-accent-200: #afe1e2;
+  --color-accent-300: #82cfd2;
+  --color-accent-400: #5cbabd;
+  --color-accent-500: #3fa1a6;
+  --color-accent-600: #33878c;
+  --color-accent-700: #296b70;
+  --color-accent-800: #214f53;
+  --color-accent-900: #193438;
+
+  /* Color Palette - Neutral */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f0f2f5;
+  --color-neutral-200: #e2e6ec;
+  --color-neutral-300: #d1d7e0;
+  --color-neutral-400: #b0b9c6;
+  --color-neutral-500: #8c99ab;
+  --color-neutral-600: #6b7a8d;
+  --color-neutral-700: #4d5c6f;
+  --color-neutral-800: #364152;
+  --color-neutral-900: #1f2937;
+
+  /* Semantic Mappings */
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-700);
+  --color-text-muted: var(--color-neutral-500);
+  --color-text-brand: var(--color-brand-600);
+
+  --color-border-primary: var(--color-neutral-300);
+  --color-border-secondary: var(--color-neutral-200);
+  --color-border-brand: var(--color-brand-500);
+}
+
+body {
+  background-color: var(--color-brand-200);
+  color: var(--color-neutral-900);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
