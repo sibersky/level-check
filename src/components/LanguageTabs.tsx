@@ -9,6 +9,7 @@ interface LanguageTabsProps {
   onLanguageChange: (lang: TargetLanguage) => void;
   activeSection: string;
   onSectionClick: (sectionId: string) => void;
+  currentLocale: 'ru' | 'en' | 'es';
 }
 
 export const LanguageTabs: React.FC<LanguageTabsProps> = ({
@@ -16,30 +17,67 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
   onLanguageChange,
   activeSection,
   onSectionClick,
+  currentLocale,
 }) => {
+  const tabTitlesByLocale = {
+    ru: {
+      en: { label: 'Тест по английскому (English)', shortLabel: 'English' },
+      es: { label: 'Тест по испанскому (Español)', shortLabel: 'Español' },
+      de: { label: 'Тест по немецкому (Deutsch)', shortLabel: 'Deutsch' },
+      pt: { label: 'Тест по португальскому (Português)', shortLabel: 'Português' },
+      pills: {
+        quiz: 'Диагностика (18 Qs)',
+        directory: 'Каталог тестов',
+        cefr: 'Шкала MCER (A1–C2)',
+      },
+    },
+    en: {
+      en: { label: 'English Placement & Level Check', shortLabel: 'English' },
+      es: { label: 'Spanish Placement & Level Check (Español)', shortLabel: 'Español' },
+      de: { label: 'German Placement & Level Check (Deutsch)', shortLabel: 'Deutsch' },
+      pt: { label: 'Portuguese Placement & Level Check (Português)', shortLabel: 'Português' },
+      pills: {
+        quiz: 'Diagnostic (18 Qs)',
+        directory: 'Test Directory',
+        cefr: 'CEFR Framework (A1–C2)',
+      },
+    },
+    es: {
+      en: { label: 'Prueba de nivel de inglés (English)', shortLabel: 'English' },
+      es: { label: 'Prueba de nivel de español (Español)', shortLabel: 'Español' },
+      de: { label: 'Prueba de nivel de alemán (Deutsch)', shortLabel: 'Deutsch' },
+      pt: { label: 'Prueba de nivel de portugués (Português)', shortLabel: 'Português' },
+      pills: {
+        quiz: 'Diagnóstico (18 Qs)',
+        directory: 'Directorio de Pruebas',
+        cefr: 'Marco MCER (A1–C2)',
+      },
+    },
+  }[currentLocale];
+
   const languages: { code: TargetLanguage; label: string; shortLabel: string; flag: string }[] = [
     {
       code: 'en',
-      label: 'English Placement & Level Check',
-      shortLabel: 'English',
+      label: tabTitlesByLocale.en.label,
+      shortLabel: tabTitlesByLocale.en.shortLabel,
       flag: '🇬🇧',
     },
     {
       code: 'es',
-      label: 'Spanish Placement & Level Check (Español)',
-      shortLabel: 'Español',
+      label: tabTitlesByLocale.es.label,
+      shortLabel: tabTitlesByLocale.es.shortLabel,
       flag: '🇪🇸',
     },
     {
       code: 'de',
-      label: 'German Placement & Level Check (Deutsch)',
-      shortLabel: 'Deutsch',
+      label: tabTitlesByLocale.de.label,
+      shortLabel: tabTitlesByLocale.de.shortLabel,
       flag: '🇩🇪',
     },
     {
       code: 'pt',
-      label: 'Portuguese Placement & Level Check (Português)',
-      shortLabel: 'Português',
+      label: tabTitlesByLocale.pt.label,
+      shortLabel: tabTitlesByLocale.pt.shortLabel,
       flag: '🇵🇹',
     },
   ];
@@ -84,7 +122,7 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
               }`}
             >
               <BookCheck className="w-3.5 h-3.5" />
-              <span>Диагностика (18 Qs)</span>
+              <span>{tabTitlesByLocale.pills.quiz}</span>
             </button>
 
             <button
@@ -97,7 +135,7 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>Каталог тестов</span>
+              <span>{tabTitlesByLocale.pills.directory}</span>
             </button>
 
             <button
@@ -110,7 +148,7 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>Шкала MCER (A1–C2)</span>
+              <span>{tabTitlesByLocale.pills.cefr}</span>
             </button>
           </div>
         </div>

@@ -182,6 +182,7 @@ export function App() {
         onLanguageChange={setQuizLanguage}
         activeSection={activeSection}
         onSectionClick={scrollToSection}
+        currentLocale={currentLocale}
       />
 
       {/* Hero Headline */}
@@ -226,17 +227,17 @@ export function App() {
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
         {/* Section A: Diagnostic Quiz */}
         <section id="quick-quiz" className="scroll-mt-36">
-          <QuickEstimator language={quizLanguage} />
+          <QuickEstimator language={quizLanguage} locale={currentLocale} />
         </section>
 
-        {/* Section B: External Test Directory (now fully localized with locale={currentLocale}) */}
+        {/* Section B: External Test Directory */}
         <section id="directory" className="scroll-mt-36">
           <PlacementDirectory language={quizLanguage} locale={currentLocale} />
         </section>
 
         {/* Section C: CEFR Guide */}
         <section id="cefr-guide" className="scroll-mt-36">
-          <CefrGuide />
+          <CefrGuide locale={currentLocale} />
         </section>
       </main>
 
