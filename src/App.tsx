@@ -17,9 +17,28 @@ export function App() {
   const [quizLanguage, setQuizLanguage] = useState<'en' | 'es'>('en');
   const [activeSection, setActiveSection] = useState<string>('quick-quiz');
 
-  // Load locale preference if available
+  // Load locale preference from URL query (e.g. nextInternalLocale from landing page), pathname, or localStorage
   useEffect(() => {
     try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const queryLocale = searchParams.get('nextInternalLocale') || searchParams.get('locale');
+      if (queryLocale === 'ru' || queryLocale === 'en' || queryLocale === 'es') {
+        setCurrentLocale(queryLocale);
+        return;
+      }
+
+      const path = window.location.pathname;
+      if (path.startsWith('/ru')) {
+        setCurrentLocale('ru');
+        return;
+      } else if (path.startsWith('/es')) {
+        setCurrentLocale('es');
+        return;
+      } else if (path.startsWith('/en')) {
+        setCurrentLocale('en');
+        return;
+      }
+
       const saved = localStorage.getItem('teacher_alex_locale');
       if (saved === 'ru' || saved === 'en' || saved === 'es') {
         setCurrentLocale(saved);
