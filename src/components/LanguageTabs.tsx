@@ -1,6 +1,6 @@
 // src/components/LanguageTabs.tsx
 import React from 'react';
-import { BookCheck, Compass, Layers } from 'lucide-react';
+import { BookCheck, Compass, Layers, Languages } from 'lucide-react';
 
 export type TargetLanguage = 'en' | 'es' | 'de' | 'pt';
 
@@ -19,12 +19,10 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
   onSectionClick,
   currentLocale,
 }) => {
-  const tabTitlesByLocale = {
+  const configByLocale = {
     ru: {
-      en: { label: 'Тест по английскому (English)', shortLabel: 'English' },
-      es: { label: 'Тест по испанскому (Español)', shortLabel: 'Español' },
-      de: { label: 'Тест по немецкому (Deutsch)', shortLabel: 'Deutsch' },
-      pt: { label: 'Тест по португальскому (Português)', shortLabel: 'Português' },
+      categoryPrefix: 'Оценка уровня:',
+      shortCategoryPrefix: 'Язык:',
       pills: {
         quiz: 'Диагностика (18 Qs)',
         directory: 'Каталог тестов',
@@ -32,21 +30,17 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
       },
     },
     en: {
-      en: { label: 'English Placement & Level Check', shortLabel: 'English' },
-      es: { label: 'Spanish Placement & Level Check (Español)', shortLabel: 'Español' },
-      de: { label: 'German Placement & Level Check (Deutsch)', shortLabel: 'Deutsch' },
-      pt: { label: 'Portuguese Placement & Level Check (Português)', shortLabel: 'Português' },
+      categoryPrefix: 'Placement & Level Check:',
+      shortCategoryPrefix: 'Placement:',
       pills: {
         quiz: 'Diagnostic (18 Qs)',
         directory: 'Test Directory',
-        cefr: 'CEFR Framework (A1–C2)',
+        cefr: 'CEFR Scale (A1–C2)',
       },
     },
     es: {
-      en: { label: 'Prueba de nivel de inglés (English)', shortLabel: 'English' },
-      es: { label: 'Prueba de nivel de español (Español)', shortLabel: 'Español' },
-      de: { label: 'Prueba de nivel de alemán (Deutsch)', shortLabel: 'Deutsch' },
-      pt: { label: 'Prueba de nivel de portugués (Português)', shortLabel: 'Português' },
+      categoryPrefix: 'Prueba de nivel:',
+      shortCategoryPrefix: 'Idioma:',
       pills: {
         quiz: 'Diagnóstico (18 Qs)',
         directory: 'Directorio de Pruebas',
@@ -55,63 +49,50 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
     },
   }[currentLocale];
 
-  const languages: { code: TargetLanguage; label: string; shortLabel: string; flag: string }[] = [
-    {
-      code: 'en',
-      label: tabTitlesByLocale.en.label,
-      shortLabel: tabTitlesByLocale.en.shortLabel,
-      flag: '🇬🇧',
-    },
-    {
-      code: 'es',
-      label: tabTitlesByLocale.es.label,
-      shortLabel: tabTitlesByLocale.es.shortLabel,
-      flag: '🇪🇸',
-    },
-    {
-      code: 'de',
-      label: tabTitlesByLocale.de.label,
-      shortLabel: tabTitlesByLocale.de.shortLabel,
-      flag: '🇩🇪',
-    },
-    {
-      code: 'pt',
-      label: tabTitlesByLocale.pt.label,
-      shortLabel: tabTitlesByLocale.pt.shortLabel,
-      flag: '🇵🇹',
-    },
+  const targetLanguages: { code: TargetLanguage; name: string; flag: string }[] = [
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'pt', name: 'Português', flag: '🇵🇹' },
   ];
 
   return (
     <div className="sticky top-16 z-40 bg-[color:var(--color-brand-100)]/90 backdrop-blur-md border-b border-[color:var(--color-brand-300)] shadow-xs transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-          {/* Main Language Switcher Tabs */}
-          <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/70 border border-brand-200 shadow-2xs overflow-x-auto no-scrollbar">
-            {languages.map((lang) => {
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2.5">
+          {/* Main Language Switcher: "Placement & Level Check" header label + compact language buttons */}
+          <div className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-2xl bg-white/80 border border-brand-200/90 shadow-2xs overflow-x-auto no-scrollbar">
+            {/* Header / Context Badge */}
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-50 text-brand-900 border border-brand-200/70 text-xs font-black tracking-tight shrink-0 select-none">
+              <Languages className="w-3.5 h-3.5 text-brand-700 shrink-0" />
+              <span className="hidden sm:inline">{configByLocale.categoryPrefix}</span>
+              <span className="sm:hidden">{configByLocale.shortCategoryPrefix}</span>
+            </div>
+
+            {/* Compact Language Selector Buttons */}
+            {targetLanguages.map((lang) => {
               const isSelected = currentLanguage === lang.code;
               return (
                 <button
                   key={lang.code}
                   type="button"
                   onClick={() => onLanguageChange(lang.code)}
-                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                  className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     isSelected
                       ? 'bg-brand-600 text-white shadow-xs'
-                      : 'text-neutral-700 hover:text-brand-900 hover:bg-white/60'
+                      : 'text-neutral-700 hover:text-brand-900 hover:bg-brand-100/60'
                   }`}
                   aria-pressed={isSelected}
                 >
                   <span className="text-base leading-none select-none">{lang.flag}</span>
-                  <span className="hidden md:inline">{lang.label}</span>
-                  <span className="md:hidden">{lang.shortLabel}</span>
+                  <span>{lang.name}</span>
                 </button>
               );
             })}
           </div>
 
           {/* Sub-Section Jump Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 text-xs font-semibold no-scrollbar shrink-0">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 lg:pb-0 text-xs font-semibold no-scrollbar shrink-0">
             <button
               type="button"
               onClick={() => onSectionClick('quick-quiz')}
@@ -122,7 +103,7 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
               }`}
             >
               <BookCheck className="w-3.5 h-3.5" />
-              <span>{tabTitlesByLocale.pills.quiz}</span>
+              <span>{configByLocale.pills.quiz}</span>
             </button>
 
             <button
@@ -135,7 +116,7 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>{tabTitlesByLocale.pills.directory}</span>
+              <span>{configByLocale.pills.directory}</span>
             </button>
 
             <button
@@ -148,7 +129,7 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>{tabTitlesByLocale.pills.cefr}</span>
+              <span>{configByLocale.pills.cefr}</span>
             </button>
           </div>
         </div>
