@@ -2,9 +2,11 @@
 import React from 'react';
 import { BookCheck, Compass, Layers } from 'lucide-react';
 
+export type TargetLanguage = 'en' | 'es' | 'de' | 'pt';
+
 interface LanguageTabsProps {
-  currentLanguage: 'en' | 'es';
-  onLanguageChange: (lang: 'en' | 'es') => void;
+  currentLanguage: TargetLanguage;
+  onLanguageChange: (lang: TargetLanguage) => void;
   activeSection: string;
   onSectionClick: (sectionId: string) => void;
 }
@@ -15,41 +17,63 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
   activeSection,
   onSectionClick,
 }) => {
+  const languages: { code: TargetLanguage; label: string; shortLabel: string; flag: string }[] = [
+    {
+      code: 'en',
+      label: 'English Placement & Level Check',
+      shortLabel: 'English',
+      flag: '🇬🇧',
+    },
+    {
+      code: 'es',
+      label: 'Spanish Placement & Level Check (Español)',
+      shortLabel: 'Español',
+      flag: '🇪🇸',
+    },
+    {
+      code: 'de',
+      label: 'German Placement & Level Check (Deutsch)',
+      shortLabel: 'Deutsch',
+      flag: '🇩🇪',
+    },
+    {
+      code: 'pt',
+      label: 'Portuguese Placement & Level Check (Português)',
+      shortLabel: 'Português',
+      flag: '🇵🇹',
+    },
+  ];
+
   return (
     <div className="sticky top-16 z-40 bg-[color:var(--color-brand-100)]/90 backdrop-blur-md border-b border-[color:var(--color-brand-300)] shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
           {/* Main Language Switcher Tabs */}
-          <div className="inline-flex p-1 rounded-xl bg-white/70 border border-brand-200 shadow-2xs">
-            <button
-              type="button"
-              onClick={() => onLanguageChange('en')}
-              className={`flex items-center gap-2 px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                currentLanguage === 'en'
-                  ? 'bg-brand-600 text-white shadow-xs'
-                  : 'text-neutral-700 hover:text-brand-900 hover:bg-white/60'
-              }`}
-            >
-              <span className="text-base leading-none select-none">🇬🇧</span>
-              <span>English Placement & Level Check</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onLanguageChange('es')}
-              className={`flex items-center gap-2 px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                currentLanguage === 'es'
-                  ? 'bg-brand-600 text-white shadow-xs'
-                  : 'text-neutral-700 hover:text-brand-900 hover:bg-white/60'
-              }`}
-            >
-              <span className="text-base leading-none select-none">🇪🇸</span>
-              <span>Spanish Placement & Level Check (Español)</span>
-            </button>
+          <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/70 border border-brand-200 shadow-2xs overflow-x-auto no-scrollbar">
+            {languages.map((lang) => {
+              const isSelected = currentLanguage === lang.code;
+              return (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => onLanguageChange(lang.code)}
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                    isSelected
+                      ? 'bg-brand-600 text-white shadow-xs'
+                      : 'text-neutral-700 hover:text-brand-900 hover:bg-white/60'
+                  }`}
+                  aria-pressed={isSelected}
+                >
+                  <span className="text-base leading-none select-none">{lang.flag}</span>
+                  <span className="hidden md:inline">{lang.label}</span>
+                  <span className="md:hidden">{lang.shortLabel}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Sub-Section Jump Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 text-xs font-semibold no-scrollbar">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 text-xs font-semibold no-scrollbar shrink-0">
             <button
               type="button"
               onClick={() => onSectionClick('quick-quiz')}
@@ -94,4 +118,5 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
     </div>
   );
 };
+
 export default LanguageTabs;

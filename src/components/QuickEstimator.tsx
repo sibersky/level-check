@@ -1,6 +1,13 @@
-// src/components/QuickEstimator.tsx
-import React, { useState, useMemo } from 'react';
-import { QuizQuestion, CEFRLevel, ENGLISH_QUESTIONS, SPANISH_QUESTIONS } from '../data/quizData';
+import React, { useState, useMemo, useEffect } from 'react';
+import {
+  QuizQuestion,
+  CEFRLevel,
+  ENGLISH_QUESTIONS,
+  SPANISH_QUESTIONS,
+  GERMAN_QUESTIONS,
+  PORTUGUESE_QUESTIONS,
+} from '../data/quizData';
+import { TargetLanguage } from './LanguageTabs';
 import {
   CheckCircle2,
   XCircle,
@@ -19,7 +26,7 @@ import {
 } from 'lucide-react';
 
 interface QuickEstimatorProps {
-  language: 'en' | 'es';
+  language: TargetLanguage;
 }
 
 interface AnswerState {
@@ -30,13 +37,32 @@ interface AnswerState {
 
 export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language }) => {
   const questions: QuizQuestion[] = useMemo(() => {
-    return language === 'en' ? ENGLISH_QUESTIONS : SPANISH_QUESTIONS;
+    switch (language) {
+      case 'en':
+        return ENGLISH_QUESTIONS;
+      case 'es':
+        return SPANISH_QUESTIONS;
+      case 'de':
+        return GERMAN_QUESTIONS;
+      case 'pt':
+        return PORTUGUESE_QUESTIONS;
+      default:
+        return ENGLISH_QUESTIONS;
+    }
   }, [language]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, AnswerState>>({});
   const [isCompleted, setIsCompleted] = useState(false);
   const [showReview, setShowReview] = useState(false);
+
+  // Reset state when language changes
+  useEffect(() => {
+    setCurrentIndex(0);
+    setAnswers({});
+    setIsCompleted(false);
+    setShowReview(false);
+  }, [language]);
 
   const currentQ = questions[currentIndex];
   const currentAnswer = answers[currentQ.id] || {
@@ -185,11 +211,17 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language }) => {
                 TEACHER ALEX DIAGNOSTIC
               </span>
               <span className="text-xs text-brand-200 font-medium">
-                {language === 'en' ? '🇬🇧 Английский язык (18 вопросов)' : '🇪🇸 Испанский язык (18 вопросов)'}
+                {language === 'en' && '🇬🇧 Английский язык (18 вопросов)'}
+                {language === 'es' && '🇪🇸 Испанский язык (18 вопросов)'}
+                {language === 'de' && '🇩🇪 Немецкий язык (18 вопросов)'}
+                {language === 'pt' && '🇵🇹 🇧🇷 Португальский язык (18 вопросов)'}
               </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
-              {language === 'en' ? 'Экспресс-оценка уровня CEFR' : 'Evaluación Rápida de Nivel MCER'}
+              {language === 'en' && 'Экспресс-оценка уровня CEFR'}
+              {language === 'es' && 'Evaluación Rápida de Nivel MCER'}
+              {language === 'de' && 'CEFR-Schnelleinstufung (Deutsch)'}
+              {language === 'pt' && 'Avaliação Rápida de Nível QECR'}
             </h2>
             <p className="text-xs sm:text-sm text-brand-100/90 mt-1 max-w-xl">
               18 адаптивных вопросов от A1 до C2 с учетом вашей уверенности в ответе. Работает локально в браузере.

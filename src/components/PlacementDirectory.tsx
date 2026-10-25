@@ -1,6 +1,13 @@
-// src/components/PlacementDirectory.tsx
 import React, { useState, useMemo } from 'react';
-import { PlacementTest, ENGLISH_TESTS, SPANISH_TESTS, AccuracyLevel } from '../data/directoryData';
+import {
+  PlacementTest,
+  ENGLISH_TESTS,
+  SPANISH_TESTS,
+  GERMAN_TESTS,
+  PORTUGUESE_TESTS,
+  AccuracyLevel,
+} from '../data/directoryData';
+import { TargetLanguage } from './LanguageTabs';
 import {
   ExternalLink,
   Clock,
@@ -13,7 +20,7 @@ import {
 } from 'lucide-react';
 
 interface PlacementDirectoryProps {
-  language: 'en' | 'es';
+  language: TargetLanguage;
   locale: 'ru' | 'en' | 'es';
 }
 
@@ -24,7 +31,18 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
   const [searchQuery, setSearchQuery] = useState('');
 
   const rawTests: PlacementTest[] = useMemo(() => {
-    return language === 'en' ? ENGLISH_TESTS : SPANISH_TESTS;
+    switch (language) {
+      case 'en':
+        return ENGLISH_TESTS;
+      case 'es':
+        return SPANISH_TESTS;
+      case 'de':
+        return GERMAN_TESTS;
+      case 'pt':
+        return PORTUGUESE_TESTS;
+      default:
+        return ENGLISH_TESTS;
+    }
   }, [language]);
 
   const uiTexts = {
@@ -32,6 +50,8 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
       badge: 'Каталог внешних тестов',
       titleEn: 'Лучшие бесплатные тесты английского языка',
       titleEs: 'Лучшие бесплатные тесты испанского языка',
+      titleDe: 'Лучшие бесплатные тесты немецкого языка',
+      titlePt: 'Лучшие бесплатные тесты португальского языка',
       subtitle: 'Официальные и академические тесты определения уровня с оценкой точности, временем прохождения и прямыми ссылками.',
       searchPlaceholder: 'Поиск тестов, навыков или провайдера...',
       filters: {
@@ -52,6 +72,8 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
       badge: 'Verified Benchmark Directory',
       titleEn: 'Curated Online English Placement Tests',
       titleEs: 'Curated Online Spanish Placement Tests',
+      titleDe: 'Curated Online German Placement Tests',
+      titlePt: 'Curated Online Portuguese Placement Tests',
       subtitle: 'The most reliable free external proficiency tests available on the web, vetted for academic rigor and diagnostic accuracy.',
       searchPlaceholder: 'Search tests, skills, or providers...',
       filters: {
@@ -72,6 +94,8 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
       badge: 'Directorio de Pruebas Oficiales',
       titleEn: 'Pruebas de Nivel de Inglés Recomendadas',
       titleEs: 'Directorio de Pruebas Oficiales de Español',
+      titleDe: 'Directorio de Pruebas Oficiales de Alemán',
+      titlePt: 'Directorio de Pruebas Oficiales de Portugués',
       subtitle: 'Las pruebas de nivel gratuitas más fiables de la web, evaluadas por rigor académico y precisión diagnóstica.',
       searchPlaceholder: 'Buscar pruebas, habilidades o institución...',
       filters: {
@@ -143,7 +167,10 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
             <span>{uiTexts.badge}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
-            {language === 'en' ? uiTexts.titleEn : uiTexts.titleEs}
+            {language === 'en' && uiTexts.titleEn}
+            {language === 'es' && uiTexts.titleEs}
+            {language === 'de' && uiTexts.titleDe}
+            {language === 'pt' && uiTexts.titlePt}
           </h2>
           <p className="text-sm text-neutral-600 mt-1 max-w-2xl leading-relaxed">
             {uiTexts.subtitle}
