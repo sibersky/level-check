@@ -4,23 +4,11 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/level_check/assets/(.*)",
-      "destination": "/assets/$1"
+      "source": "/level_check/:path*",
+      "destination": "/level_check/index.html"
     },
     {
-      "source": "/level_check/(.*\\.(?:ico|png|svg|jpg|jpeg|webp|json|txt|woff|woff2|ttf))",
-      "destination": "/$1"
-    },
-    {
-      "source": "/level_check",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/level_check/(.*)",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
