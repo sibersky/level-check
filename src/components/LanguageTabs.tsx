@@ -1,6 +1,7 @@
 // src/components/LanguageTabs.tsx
 import React from 'react';
 import { BookCheck, Compass, Layers, Languages } from 'lucide-react';
+import { FlagIcon } from './FlagIcon';
 
 export type TargetLanguage = 'en' | 'es' | 'de' | 'pt';
 
@@ -49,11 +50,11 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
     },
   }[currentLocale];
 
-  const targetLanguages: { code: TargetLanguage; name: string; flag: string }[] = [
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  const targetLanguages: { code: TargetLanguage; name: string }[] = [
+    { code: 'en', name: 'English' },
+    { code: 'es', name: 'Español' },
+    { code: 'de', name: 'Deutsch' },
+    { code: 'pt', name: 'Português' },
   ];
 
   return (
@@ -77,14 +78,14 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
                   key={lang.code}
                   type="button"
                   onClick={() => onLanguageChange(lang.code)}
-                  className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                  className={`flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     isSelected
                       ? 'bg-brand-600 text-white shadow-xs'
                       : 'text-neutral-700 hover:text-brand-900 hover:bg-brand-100/60'
                   }`}
                   aria-pressed={isSelected}
                 >
-                  <span className="text-base leading-none select-none">{lang.flag}</span>
+                  <FlagIcon country={lang.code} size="md" />
                   <span>{lang.name}</span>
                 </button>
               );

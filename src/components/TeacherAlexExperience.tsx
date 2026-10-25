@@ -18,6 +18,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { TelegramSimulator } from './TelegramSimulator';
+import { FlagIcon } from './FlagIcon';
 
 interface TeacherAlexExperienceProps {
   activeView: 'landing' | 'login' | 'profile' | 'pokemeon' | 'smartreader';
@@ -474,15 +475,17 @@ export const TeacherAlexExperience: React.FC<TeacherAlexExperienceProps> = ({
                 <div className="flex items-center gap-1 bg-[#8b9ac6] p-1 rounded-lg text-xs font-bold border border-[#6f80b0]">
                   <button
                     onClick={() => setLocale("ru")}
-                    className={`px-2 py-1 rounded transition-colors ${locale === "ru" ? "bg-[#1e2942] text-white" : "text-[#1e2942]"}`}
+                    className={`flex items-center gap-1.5 px-2 py-1 rounded transition-colors ${locale === "ru" ? "bg-[#1e2942] text-white" : "text-[#1e2942]"}`}
                   >
-                    🇷🇺 Русский
+                    <FlagIcon country="ru" size="sm" />
+                    <span>Русский</span>
                   </button>
                   <button
                     onClick={() => setLocale("en")}
-                    className={`px-2 py-1 rounded transition-colors ${locale === "en" ? "bg-[#1e2942] text-white" : "text-[#1e2942]"}`}
+                    className={`flex items-center gap-1.5 px-2 py-1 rounded transition-colors ${locale === "en" ? "bg-[#1e2942] text-white" : "text-[#1e2942]"}`}
                   >
-                    🇬🇧 English
+                    <FlagIcon country="en" size="sm" />
+                    <span>English</span>
                   </button>
                 </div>
               </div>

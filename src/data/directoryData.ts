@@ -846,7 +846,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://www.instituto-camoes.pt/en/activity-camoes/what-we-do/learn-portuguese/certification',
     translations: {
       ru: {
-        name: 'Instituto Camões (Official Sample & Diagnostic — 🇵🇹 European Portuguese)',
+        name: 'Instituto Camões (Official Sample & Diagnostic — PT-PT European Portuguese)',
         provider: 'Camões, I.P. (Португалия)',
         accuracyLabel: 'Высокая',
         badge: 'Официальный стандарт CAPLE',
@@ -856,7 +856,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Без регистрации',
       },
       en: {
-        name: 'Instituto Camões (Official Sample & Diagnostic Tests — 🇵🇹 European Portuguese)',
+        name: 'Instituto Camões (Official Sample & Diagnostic Tests — PT-PT European Portuguese)',
         provider: 'Camões, I.P. (Portugal)',
         accuracyLabel: 'High',
         badge: 'Official CAPLE Exam Standard',
@@ -866,7 +866,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'No sign-up required',
       },
       es: {
-        name: 'Instituto Camões (Pruebas Oficiales de Diagnóstico — 🇵🇹 Portugués Europeo)',
+        name: 'Instituto Camões (Pruebas Oficiales de Diagnóstico — PT-PT Portugués Europeo)',
         provider: 'Camões, I.P. (Portugal)',
         accuracyLabel: 'Alta',
         badge: 'Estándar Oficial CAPLE',
@@ -886,7 +886,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://www.portugueselab.com/resources/placement-test',
     translations: {
       ru: {
-        name: 'Portuguese Lab (🇵🇹 European Portuguese Placement Test)',
+        name: 'Portuguese Lab (PT-PT European Portuguese Placement Test)',
         provider: 'Portuguese Lab Academy (Лиссабон)',
         accuracyLabel: 'Высокая',
         badge: 'Живое европейское аудио',
@@ -896,7 +896,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Мгновенные результаты на экране (без регистрации)',
       },
       en: {
-        name: 'Portuguese Lab (🇵🇹 European Portuguese Placement Test)',
+        name: 'Portuguese Lab (PT-PT European Portuguese Placement Test)',
         provider: 'Portuguese Lab Academy (Lisbon)',
         accuracyLabel: 'High',
         badge: 'Authentic European Audio',
@@ -906,7 +906,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Instant on-screen results (No sign-up)',
       },
       es: {
-        name: 'Portuguese Lab (🇵🇹 Test de Portugués Europeo)',
+        name: 'Portuguese Lab (PT-PT Test de Portugués Europeo)',
         provider: 'Portuguese Lab Academy (Lisboa)',
         accuracyLabel: 'Alta',
         badge: 'Audio Europeo Auténtico',
@@ -926,7 +926,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://caminhoslanguages.com/portuguese-level-test/',
     translations: {
       ru: {
-        name: 'Caminhos Language Centre (🇧🇷 Brazilian Portuguese Level Tests)',
+        name: 'Caminhos Language Centre (PT-BR Brazilian Portuguese Level Tests)',
         provider: 'Caminhos Language Centre (Рио-де-Жанейро)',
         accuracyLabel: 'Высокая',
         badge: 'Спецтест для говорящих на испанском',
@@ -936,7 +936,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Без регистрации',
       },
       en: {
-        name: 'Caminhos Language Centre (🇧🇷 Brazilian Portuguese Level Tests)',
+        name: 'Caminhos Language Centre (PT-BR Brazilian Portuguese Level Tests)',
         provider: 'Caminhos Language Centre (Rio de Janeiro)',
         accuracyLabel: 'High',
         badge: 'Spanish-Speaker Track Included',
@@ -946,7 +946,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'No sign-up required',
       },
       es: {
-        name: 'Caminhos Language Centre (🇧🇷 Portugués Brasileño)',
+        name: 'Caminhos Language Centre (PT-BR Portugués Brasileño)',
         provider: 'Caminhos Language Centre (Río de Janeiro)',
         accuracyLabel: 'Alta',
         badge: 'Filtro Especial de "Portuñol"',
@@ -966,7 +966,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://www.languagetrainers.com/portuguese-level-test.php',
     translations: {
       ru: {
-        name: 'Language Trainers (🇧🇷/🇵🇹 Progressive 70-Question Test)',
+        name: 'Language Trainers (PT-BR / PT-PT Progressive 70-Question Test)',
         provider: 'Language Trainers',
         accuracyLabel: 'От умеренной до высокой',
         badge: 'Блоки по 10 с кнопкой «Не знаю»',
@@ -976,7 +976,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Мгновенный результат на экране',
       },
       en: {
-        name: 'Language Trainers (🇧🇷/🇵🇹 Progressive 70-Question Test)',
+        name: 'Language Trainers (PT-BR / PT-PT Progressive 70-Question Test)',
         provider: 'Language Trainers',
         accuracyLabel: 'Moderate to High',
         badge: 'Blocks of 10 with "I Don\'t Know" Option',
@@ -986,7 +986,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Instant results on screen',
       },
       es: {
-        name: 'Language Trainers (🇧🇷/🇵🇹 Test Progresivo de 70 Preguntas)',
+        name: 'Language Trainers (PT-BR / PT-PT Test Progresivo de 70 Preguntas)',
         provider: 'Language Trainers',
         accuracyLabel: 'Moderada a Alta',
         badge: 'Bloques de 10 con opción "No sé"',
@@ -1006,7 +1006,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://www.lenguia.com/',
     translations: {
       ru: {
-        name: 'Lenguia (🇧🇷/🇵🇹 Multi-Skill Assessment)',
+        name: 'Lenguia (PT-BR / PT-PT Multi-Skill Assessment)',
         provider: 'Lenguia',
         accuracyLabel: 'Высокая',
         badge: 'AI-оценка входа и выхода',
@@ -1016,7 +1016,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Без регистрации',
       },
       en: {
-        name: 'Lenguia (🇧🇷/🇵🇹 Multi-Skill Assessment)',
+        name: 'Lenguia (PT-BR / PT-PT Multi-Skill Assessment)',
         provider: 'Lenguia',
         accuracyLabel: 'High',
         badge: 'AI-Powered Input & Output Skills',
@@ -1026,7 +1026,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'No sign-up required',
       },
       es: {
-        name: 'Lenguia (🇧🇷/🇵🇹 Evaluación Integral)',
+        name: 'Lenguia (PT-BR / PT-PT Evaluación Integral)',
         provider: 'Lenguia',
         accuracyLabel: 'Alta',
         badge: 'Destrezas de Entrada y Salida con IA',
@@ -1046,7 +1046,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://www.17-minute-languages.com/en/portuguese-placement-test/',
     translations: {
       ru: {
-        name: '17 Minute Languages (🇧🇷/🇵🇹 Adaptive Vocabulary Placement Test)',
+        name: '17 Minute Languages (PT-BR / PT-PT Adaptive Vocabulary Placement Test)',
         provider: '17 Minute Languages',
         accuracyLabel: 'Умеренная (Лексический фокус)',
         badge: 'Объем лексики (A1–C2)',
@@ -1056,7 +1056,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Без регистрации',
       },
       en: {
-        name: '17 Minute Languages (🇧🇷/🇵🇹 Adaptive Vocabulary Placement Test)',
+        name: '17 Minute Languages (PT-BR / PT-PT Adaptive Vocabulary Placement Test)',
         provider: '17 Minute Languages',
         accuracyLabel: 'Moderate (Lexical Focus)',
         badge: 'Vocabulary Range Check (A1–C2)',
@@ -1066,7 +1066,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'No sign-up required',
       },
       es: {
-        name: '17 Minute Languages (🇧🇷/🇵🇹 Test Adaptativo de Vocabulario)',
+        name: '17 Minute Languages (PT-BR / PT-PT Test Adaptativo de Vocabulario)',
         provider: '17 Minute Languages',
         accuracyLabel: 'Moderada (Enfoque Léxico)',
         badge: 'Amplitud de Vocabulario (A1–C2)',
@@ -1086,7 +1086,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
     url: 'https://preply.com/en/learn/portuguese/test-your-portuguese',
     translations: {
       ru: {
-        name: 'Preply (🇧🇷/🇵🇹 Quick Grammar Placement Test)',
+        name: 'Preply (PT-BR / PT-PT Quick Grammar Placement Test)',
         provider: 'Preply',
         accuracyLabel: 'От низкой до умеренной',
         badge: 'Базовый ориентир (36 Qs)',
@@ -1096,7 +1096,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'Без регистрации',
       },
       en: {
-        name: 'Preply (🇧🇷/🇵🇹 Quick Grammar Placement Test)',
+        name: 'Preply (PT-BR / PT-PT Quick Grammar Placement Test)',
         provider: 'Preply',
         accuracyLabel: 'Low to Moderate',
         badge: 'Beginner Baseline (36 Qs)',
@@ -1106,7 +1106,7 @@ export const PORTUGUESE_TESTS: PlacementTest[] = [
         accountNotice: 'No sign-up required',
       },
       es: {
-        name: 'Preply (🇧🇷/🇵🇹 Test Rápido de Gramática)',
+        name: 'Preply (PT-BR / PT-PT Test Rápido de Gramática)',
         provider: 'Preply',
         accuracyLabel: 'Baja a Moderada',
         badge: 'Evaluación Inicial (36 Qs)',

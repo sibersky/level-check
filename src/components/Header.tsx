@@ -1,6 +1,7 @@
 // src/components/Header.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import { FlagIcon } from './FlagIcon';
 
 export interface HeaderProps {
   currentLocale: 'ru' | 'en' | 'es';
@@ -21,9 +22,9 @@ export const Header: React.FC<HeaderProps> = ({
   const siteBaseUrl = 'https://teacher-alex.com';
 
   const languages = [
-    { code: 'ru' as const, name: 'Русский', flag: '🇷🇺' },
-    { code: 'en' as const, name: 'English', flag: '🇬🇧' },
-    { code: 'es' as const, name: 'Español', flag: '🇪🇸' },
+    { code: 'ru' as const, name: 'Русский' },
+    { code: 'en' as const, name: 'English' },
+    { code: 'es' as const, name: 'Español' },
   ];
 
   const currentLangObj = languages.find((l) => l.code === currentLocale) || languages[1];
@@ -108,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className="flex items-center space-x-2 bg-brand-900/90 hover:bg-brand-950 text-white border border-brand-800 py-1.5 px-3 rounded-lg shadow-2xs focus:outline-hidden transition-colors cursor-pointer text-xs font-semibold"
                 aria-label="Select Language"
               >
-                <span className="text-base leading-none select-none">{currentLangObj.flag}</span>
+                <FlagIcon country={currentLangObj.code} size="sm" />
                 <span className="hidden sm:inline text-xs font-bold">{currentLangObj.name}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-brand-200" />
               </button>
@@ -129,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
                           : 'text-slate-700 hover:bg-slate-50'
                       }`}
                     >
-                      <span className="text-base mr-2 select-none">{lang.flag}</span>
+                      <FlagIcon country={lang.code} size="sm" className="mr-2" />
                       <span>{lang.name}</span>
                     </button>
                   ))}

@@ -8,6 +8,7 @@ import {
   PORTUGUESE_QUESTIONS,
 } from '../data/quizData';
 import { TargetLanguage } from './LanguageTabs';
+import { FlagIcon } from './FlagIcon';
 import {
   CheckCircle2,
   XCircle,
@@ -132,10 +133,10 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
     ru: {
       badge: 'TEACHER ALEX DIAGNOSTIC',
       langLabel: {
-        en: '🇬🇧 Английский язык (18 вопросов)',
-        es: '🇪🇸 Испанский язык (18 вопросов)',
-        de: '🇩🇪 Немецкий язык (18 вопросов)',
-        pt: '🇵🇹 🇧🇷 Португальский язык (18 вопросов)',
+        en: 'Английский язык (18 вопросов)',
+        es: 'Испанский язык (18 вопросов)',
+        de: 'Немецкий язык (18 вопросов)',
+        pt: 'Португальский язык (18 вопросов)',
       },
       title: 'Экспресс-оценка уровня CEFR',
       subtitle:
@@ -215,10 +216,10 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
     en: {
       badge: 'TEACHER ALEX DIAGNOSTIC',
       langLabel: {
-        en: '🇬🇧 English Language (18 Questions)',
-        es: '🇪🇸 Spanish Language (18 Questions)',
-        de: '🇩🇪 German Language (18 Questions)',
-        pt: '🇵🇹 🇧🇷 Portuguese Language (18 Questions)',
+        en: 'English Language (18 Questions)',
+        es: 'Spanish Language (18 Questions)',
+        de: 'German Language (18 Questions)',
+        pt: 'Portuguese Language (18 Questions)',
       },
       title: 'Quick CEFR Level Diagnostic',
       subtitle:
@@ -298,10 +299,10 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
     es: {
       badge: 'DIAGNÓSTICO TEACHER ALEX',
       langLabel: {
-        en: '🇬🇧 Idioma Inglés (18 preguntas)',
-        es: '🇪🇸 Idioma Español (18 preguntas)',
-        de: '🇩🇪 Idioma Alemán (18 preguntas)',
-        pt: '🇵🇹 🇧🇷 Idioma Portugués (18 preguntas)',
+        en: 'Idioma Inglés (18 preguntas)',
+        es: 'Idioma Español (18 preguntas)',
+        de: 'Idioma Alemán (18 preguntas)',
+        pt: 'Idioma Portugués (18 preguntas)',
       },
       title: 'Evaluación Rápida de Nivel MCER',
       subtitle:
@@ -452,8 +453,10 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
               <span className="px-2.5 py-0.5 rounded-full bg-brand-500/40 border border-brand-400/50 text-brand-100 text-xs font-bold uppercase tracking-wider">
                 {t.badge}
               </span>
-              <span className="text-xs text-brand-200 font-medium">
-                {t.langLabel[language]}
+              <span className="text-xs text-brand-200 font-medium inline-flex items-center gap-1.5">
+                <FlagIcon country={language} size="sm" />
+                {language === 'pt' && <FlagIcon country="br" size="sm" />}
+                <span>{t.langLabel[language]}</span>
               </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
