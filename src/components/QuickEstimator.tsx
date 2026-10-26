@@ -445,36 +445,36 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
 
   return (
     <div className="bg-white rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md overflow-hidden transition-all">
-      {/* Quiz Header Bar in Teacher Alex Brand Palette */}
-      <div className="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 px-6 sm:px-8 py-6 text-white">
+      {/* Quiz Header Bar matching Story Maker & Poke Me On clean light card style */}
+      <div className="bg-neutral-50/90 border-b border-neutral-200 px-6 sm:px-8 py-5 sm:py-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="px-2.5 py-0.5 rounded-full bg-brand-500/40 border border-brand-400/50 text-brand-100 text-xs font-bold uppercase tracking-wider">
+              <span className="px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800 border border-brand-200 text-xs font-bold uppercase tracking-wider">
                 {t.badge}
               </span>
-              <span className="text-xs text-brand-200 font-medium inline-flex items-center gap-1.5">
+              <span className="text-xs text-neutral-600 font-medium inline-flex items-center gap-1.5">
                 <FlagIcon country={language} size="sm" />
                 {language === 'pt' && <FlagIcon country="br" size="sm" />}
-                <span>{t.langLabel[language]}</span>
+                <span className="font-semibold text-neutral-800">{t.langLabel[language]}</span>
               </span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-neutral-900">
               {t.title}
             </h2>
-            <p className="text-xs sm:text-sm text-brand-100/90 mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-xl">
               {t.subtitle}
             </p>
           </div>
 
           {!isCompleted && (
-            <div className="text-right shrink-0">
-              <span className="text-xs uppercase font-bold text-brand-200 block mb-1">
+            <div className="text-left sm:text-right shrink-0">
+              <span className="text-xs uppercase font-bold text-neutral-500 block mb-0.5">
                 {t.progress}
               </span>
-              <span className="text-xl font-extrabold text-white">
+              <span className="text-xl font-extrabold text-neutral-900">
                 {currentIndex + 1}{' '}
-                <span className="text-sm font-semibold text-brand-300">/ {questions.length}</span>
+                <span className="text-sm font-semibold text-neutral-400">/ {questions.length}</span>
               </span>
             </div>
           )}
@@ -482,9 +482,9 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
 
         {/* Progress Bar */}
         {!isCompleted && (
-          <div className="mt-5 w-full bg-brand-950/50 rounded-full h-2 overflow-hidden">
+          <div className="mt-4 w-full bg-neutral-200 rounded-full h-2 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-accent-400 to-emerald-400 h-full rounded-full transition-all duration-300"
+              className="bg-brand-600 h-full rounded-full transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
           </div>

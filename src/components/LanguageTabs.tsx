@@ -58,19 +58,17 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
   ];
 
   return (
-    <div className="sticky top-16 z-40 bg-[color:var(--color-brand-100)]/90 backdrop-blur-md border-b border-[color:var(--color-brand-300)] shadow-xs transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2.5">
-          {/* Main Language Switcher: "Placement & Level Check" header label + compact language buttons */}
-          <div className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-2xl bg-white/80 border border-brand-200/90 shadow-2xs overflow-x-auto no-scrollbar">
-            {/* Header / Context Badge */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-50 text-brand-900 border border-brand-200/70 text-xs font-black tracking-tight shrink-0 select-none">
+    <div className="sticky top-16 z-40 bg-[color:var(--color-brand-100)]/95 backdrop-blur-md border-b border-[color:var(--color-brand-300)] shadow-2xs transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
+          {/* Main Language Switcher */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+            <span className="text-xs font-bold text-brand-900 flex items-center gap-1.5 shrink-0 select-none mr-1">
               <Languages className="w-3.5 h-3.5 text-brand-700 shrink-0" />
               <span className="hidden sm:inline">{configByLocale.categoryPrefix}</span>
               <span className="sm:hidden">{configByLocale.shortCategoryPrefix}</span>
-            </div>
+            </span>
 
-            {/* Compact Language Selector Buttons */}
             {targetLanguages.map((lang) => {
               const isSelected = currentLanguage === lang.code;
               return (
@@ -78,10 +76,10 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
                   key={lang.code}
                   type="button"
                   onClick={() => onLanguageChange(lang.code)}
-                  className={`flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     isSelected
                       ? 'bg-brand-600 text-white shadow-xs'
-                      : 'text-neutral-700 hover:text-brand-900 hover:bg-brand-100/60'
+                      : 'bg-white/80 hover:bg-white text-neutral-700 hover:text-neutral-900 border border-brand-200 shadow-2xs'
                   }`}
                   aria-pressed={isSelected}
                 >
@@ -93,14 +91,14 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
           </div>
 
           {/* Sub-Section Jump Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 lg:pb-0 text-xs font-semibold no-scrollbar shrink-0">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 sm:pb-0 text-xs font-semibold no-scrollbar shrink-0">
             <button
               type="button"
               onClick={() => onSectionClick('quick-quiz')}
-              className={`px-3 py-1.5 rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                 activeSection === 'quick-quiz'
-                  ? 'bg-brand-600 text-white font-bold shadow-2xs'
-                  : 'bg-white/80 hover:bg-white text-neutral-800 border border-brand-200'
+                  ? 'bg-brand-600 text-white font-bold shadow-xs'
+                  : 'bg-white/80 hover:bg-white text-neutral-700 hover:text-neutral-900 border border-brand-200 shadow-2xs'
               }`}
             >
               <BookCheck className="w-3.5 h-3.5" />
@@ -110,10 +108,10 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
             <button
               type="button"
               onClick={() => onSectionClick('directory')}
-              className={`px-3 py-1.5 rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                 activeSection === 'directory'
-                  ? 'bg-brand-600 text-white font-bold shadow-2xs'
-                  : 'bg-white/80 hover:bg-white text-neutral-800 border border-brand-200'
+                  ? 'bg-brand-600 text-white font-bold shadow-xs'
+                  : 'bg-white/80 hover:bg-white text-neutral-700 hover:text-neutral-900 border border-brand-200 shadow-2xs'
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
@@ -123,10 +121,10 @@ export const LanguageTabs: React.FC<LanguageTabsProps> = ({
             <button
               type="button"
               onClick={() => onSectionClick('cefr-guide')}
-              className={`px-3 py-1.5 rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                 activeSection === 'cefr-guide'
-                  ? 'bg-brand-600 text-white font-bold shadow-2xs'
-                  : 'bg-white/80 hover:bg-white text-neutral-800 border border-brand-200'
+                  ? 'bg-brand-600 text-white font-bold shadow-xs'
+                  : 'bg-white/80 hover:bg-white text-neutral-700 hover:text-neutral-900 border border-brand-200 shadow-2xs'
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
