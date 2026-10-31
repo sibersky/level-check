@@ -130,7 +130,7 @@ export const CefrGuide: React.FC<CefrGuideProps> = ({ locale }) => {
   }[locale];
 
   return (
-    <div className="bg-white rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md p-6 sm:p-10 space-y-8">
+    <div className="bg-[color:var(--color-neutral-50)] rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md p-6 sm:p-10 space-y-8">
       {/* Section Header */}
       <div className="border-b border-neutral-200 pb-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-bold uppercase tracking-wider mb-2">

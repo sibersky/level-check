@@ -158,7 +158,7 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md p-6 sm:p-10 space-y-6">
+    <div className="bg-[color:var(--color-neutral-50)] rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md p-6 sm:p-10 space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-neutral-200">
         <div>
@@ -222,7 +222,7 @@ export const PlacementDirectory: React.FC<PlacementDirectoryProps> = ({ language
             return (
               <div
                 key={test.id}
-                className="bg-neutral-50 hover:bg-white rounded-3xl border border-neutral-200/90 p-6 shadow-2xs hover:shadow-md transition-all hover:border-brand-400 flex flex-col justify-between group"
+                className="bg-neutral-50 hover:bg-[color:var(--color-neutral-50)] rounded-3xl border border-neutral-200/90 p-6 shadow-2xs hover:shadow-md transition-all hover:border-brand-400 flex flex-col justify-between group"
               >
                 <div>
                   {/* Top Badges */}

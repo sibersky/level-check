@@ -2,13 +2,38 @@
 import React from 'react';
 import { BookOpen, Newspaper, Bell, Sparkles } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  locale?: 'ru' | 'en' | 'es';
+}
+
+export const Footer: React.FC<FooterProps> = ({ locale = 'ru' }) => {
   const currentYear = new Date().getFullYear();
-  const yearDisplay = `2025 - ${currentYear}`;
+  const yearDisplay = currentYear > 2025 ? `2025 - ${currentYear}` : `${currentYear}`;
   const siteBaseUrl = 'https://teacher-alex.com';
 
+  const labels = {
+    ru: {
+      courses: 'Курсы',
+      about: 'О нас',
+      contact: 'Контакты',
+      account: 'Личный кабинет',
+    },
+    en: {
+      courses: 'Courses',
+      about: 'About',
+      contact: 'Contact',
+      account: 'Student Account',
+    },
+    es: {
+      courses: 'Cursos',
+      about: 'Sobre nosotros',
+      contact: 'Contacto',
+      account: 'Mi Cuenta',
+    },
+  }[locale];
+
   return (
-    <footer className="py-10 border-t border-[color:var(--color-neutral-300)] bg-[color:var(--color-brand-300)] text-neutral-900">
+    <footer className="py-10 border-t border-[color:var(--color-neutral-300)] bg-[color:var(--color-brand-300)] text-[color:var(--color-neutral-900)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* Hub Tools Quick Links Bar */}
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-neutral-800 pb-4 border-b border-[color:var(--color-neutral-400)]/40">
@@ -45,23 +70,23 @@ export const Footer: React.FC = () => {
         {/* Ecosystem Nav Links */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-neutral-800 font-medium">
           <a href={`${siteBaseUrl}/courses`} className="hover:text-brand-900 transition-colors">
-            Курсы
+            {labels.courses}
           </a>
-          <span className="text-neutral-400">•</span>
+          <span className="text-neutral-500">•</span>
           <a href={`${siteBaseUrl}/about`} className="hover:text-brand-900 transition-colors">
-            О нас
+            {labels.about}
           </a>
-          <span className="text-neutral-400">•</span>
+          <span className="text-neutral-500">•</span>
           <a href={`${siteBaseUrl}/contact`} className="hover:text-brand-900 transition-colors">
-            Контакты
+            {labels.contact}
           </a>
-          <span className="text-neutral-400">•</span>
+          <span className="text-neutral-500">•</span>
           <a href="https://account.teacher-alex.com" className="hover:text-brand-900 transition-colors">
-            Личный кабинет
+            {labels.account}
           </a>
         </div>
 
-        {/* Standard Copyright Text matching other apps */}
+        {/* Standard Copyright Text */}
         <p className="text-center text-xs sm:text-sm text-neutral-900 font-normal">
           © {yearDisplay} Teacher Alex. All rights reserved.
         </p>

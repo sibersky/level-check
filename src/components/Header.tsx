@@ -10,7 +10,7 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  currentLocale = 'en',
+  currentLocale = 'ru',
   onLocaleChange,
   isLoggedIn = false,
 }) => {
@@ -21,18 +21,51 @@ export const Header: React.FC<HeaderProps> = ({
   const accountUrlBase = 'https://account.teacher-alex.com';
   const siteBaseUrl = 'https://teacher-alex.com';
 
+  const currentUrl =
+    typeof window !== 'undefined' ? window.location.href : 'https://teacher-alex.com/level_check';
+  const encodedCallback = encodeURIComponent(currentUrl);
+
+  const loginUrl = `${accountUrlBase}/auth/login?callbackUrl=${encodedCallback}`;
+  const registerUrl = `${accountUrlBase}/auth/register?callbackUrl=${encodedCallback}`;
+  const profileUrl = `${accountUrlBase}/settings/profile`;
+  const logoutUrl = `${accountUrlBase}/auth/logout`;
+
   const languages = [
     { code: 'ru' as const, name: 'Русский' },
     { code: 'en' as const, name: 'English' },
     { code: 'es' as const, name: 'Español' },
   ];
 
-  const currentLangObj = languages.find((l) => l.code === currentLocale) || languages[1];
+  const currentLangObj = languages.find((l) => l.code === currentLocale) || languages[0];
 
   const authLabels = {
-    ru: { courses: 'Курсы', about: 'О нас', contact: 'Контакты', login: 'Войти', signUp: 'Регистрация', profile: 'Кабинет' },
-    es: { courses: 'Cursos', about: 'Sobre nosotros', contact: 'Contacto', login: 'Iniciar sesión', signUp: 'Registrarse', profile: 'Perfil' },
-    en: { courses: 'Courses', about: 'About', contact: 'Contact', login: 'Login', signUp: 'Sign Up', profile: 'Account' },
+    ru: {
+      courses: 'Курсы',
+      about: 'О нас',
+      contact: 'Контакты',
+      login: 'Войти',
+      signUp: 'Регистрация',
+      profile: 'Профиль',
+      logout: 'Выйти',
+    },
+    es: {
+      courses: 'Cursos',
+      about: 'Sobre nosotros',
+      contact: 'Contacto',
+      login: 'Iniciar sesión',
+      signUp: 'Registrarse',
+      profile: 'Perfil',
+      logout: 'Cerrar sesión',
+    },
+    en: {
+      courses: 'Courses',
+      about: 'About',
+      contact: 'Contact',
+      login: 'Login',
+      signUp: 'Sign Up',
+      profile: 'Profile',
+      logout: 'Logout',
+    },
   }[currentLocale];
 
   // Close dropdown on click outside
@@ -47,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({
   }, []);
 
   const linkStyle =
-    'text-sm font-medium text-neutral-900 hover:text-brand-900 transition-colors';
+    'text-sm font-medium text-[color:var(--color-neutral-900)] hover:text-[color:var(--color-brand-900)] transition-colors';
 
   return (
     <nav className="bg-[color:var(--color-brand-300)] border-b border-[color:var(--color-neutral-300)] shadow-xs sticky top-0 z-50">
@@ -65,7 +98,6 @@ export const Header: React.FC<HeaderProps> = ({
                 alt="Teacher Alex"
                 className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
                 onError={(e) => {
-                  // Fallback stylish monogram if image fails to render
                   (e.currentTarget as HTMLElement).style.display = 'none';
                   const fb = document.getElementById('header-logo-fallback');
                   if (fb) fb.style.display = 'flex';
@@ -79,13 +111,18 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </a>
 
-            {/* Tool Name Badge */}
-            <span className="text-neutral-800 hidden md:inline font-light select-none">/</span>
-            <span className="text-sm font-bold text-neutral-900 hidden md:inline tracking-tight">
-              Level Check
+            {/* Tool Name Breadcrumb */}
+            <span className="text-[color:var(--color-neutral-800)] hidden md:inline font-light select-none">
+              /
             </span>
+            <a
+              href={`${siteBaseUrl}/level_check`}
+              className="text-sm font-bold text-[color:var(--color-neutral-900)] hover:text-[color:var(--color-brand-900)] hidden md:inline tracking-tight transition-colors"
+            >
+              Level Check
+            </a>
 
-            {/* Main Nav Links (separated by border-l matching Teacher Alex standard) */}
+            {/* Main Nav Links */}
             <div className="hidden md:flex items-center space-x-5 pl-6 ml-6 border-l border-[color:var(--color-neutral-400)]/60">
               <a href={`${siteBaseUrl}/courses`} className={linkStyle}>
                 {authLabels.courses}
@@ -101,13 +138,14 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Right Section: Language Switcher + Auth Buttons */}
           <div className="flex items-center space-x-3.5">
-            {/* Language Switcher Dropdown (matching exact style in screenshot) */}
+            {/* Language Switcher Dropdown */}
             <div ref={dropdownRef} className="relative">
               <button
                 type="button"
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center space-x-2 bg-brand-900/90 hover:bg-brand-950 text-white border border-brand-800 py-1.5 px-3 rounded-lg shadow-2xs focus:outline-hidden transition-colors cursor-pointer text-xs font-semibold"
                 aria-label="Select Language"
+                aria-expanded={isLangDropdownOpen}
               >
                 <FlagIcon country={currentLangObj.code} size="sm" />
                 <span className="hidden sm:inline text-xs font-bold">{currentLangObj.name}</span>
@@ -115,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
 
               {isLangDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 origin-top-right z-50 animate-in fade-in duration-150">
+                <div className="absolute right-0 mt-2 w-36 bg-[color:var(--color-neutral-50)] rounded-xl shadow-xl border border-neutral-300 py-1.5 origin-top-right z-50 animate-in fade-in duration-150">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -127,7 +165,7 @@ export const Header: React.FC<HeaderProps> = ({
                       className={`w-full text-left flex items-center px-3.5 py-2 text-xs transition-colors cursor-pointer ${
                         currentLocale === lang.code
                           ? 'bg-brand-50 text-brand-900 font-bold'
-                          : 'text-slate-700 hover:bg-slate-50'
+                          : 'text-neutral-700 hover:bg-neutral-100'
                       }`}
                     >
                       <FlagIcon country={lang.code} size="sm" className="mr-2" />
@@ -142,20 +180,20 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="hidden md:flex items-center space-x-4">
               {isLoggedIn ? (
                 <>
-                  <a href={`${accountUrlBase}/settings/profile`} className={linkStyle}>
+                  <a href={profileUrl} className={linkStyle}>
                     {authLabels.profile}
                   </a>
-                  <a href={`${accountUrlBase}/auth/logout`} className={linkStyle}>
-                    Выйти
+                  <a href={logoutUrl} className={linkStyle}>
+                    {authLabels.logout}
                   </a>
                 </>
               ) : (
                 <>
-                  <a href={`${accountUrlBase}/auth/login`} className={linkStyle}>
+                  <a href={loginUrl} className={linkStyle}>
                     {authLabels.login}
                   </a>
                   <a
-                    href={`${accountUrlBase}/auth/register`}
+                    href={registerUrl}
                     className="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-xs hover:shadow-sm transition-all"
                   >
                     {authLabels.signUp}
@@ -169,8 +207,9 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-1.5 rounded-lg text-neutral-900 hover:bg-brand-200 transition-colors focus:outline-hidden cursor-pointer"
+                className="p-1.5 rounded-lg text-[color:var(--color-neutral-900)] hover:bg-brand-200 transition-colors focus:outline-hidden cursor-pointer"
                 aria-label="Toggle menu"
+                aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -201,18 +240,37 @@ export const Header: React.FC<HeaderProps> = ({
             </a>
 
             <div className="pt-3 border-t border-[color:var(--color-neutral-400)]/60 flex items-center gap-3">
-              <a
-                href={`${accountUrlBase}/auth/login`}
-                className="flex-1 py-2 text-center text-xs font-semibold text-neutral-900 bg-brand-200 hover:bg-brand-100 rounded-lg"
-              >
-                {authLabels.login}
-              </a>
-              <a
-                href={`${accountUrlBase}/auth/register`}
-                className="flex-1 py-2 text-center text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-2xs"
-              >
-                {authLabels.signUp}
-              </a>
+              {isLoggedIn ? (
+                <>
+                  <a
+                    href={profileUrl}
+                    className="flex-1 py-2 text-center text-xs font-semibold text-neutral-900 bg-brand-200 hover:bg-brand-100 rounded-lg"
+                  >
+                    {authLabels.profile}
+                  </a>
+                  <a
+                    href={logoutUrl}
+                    className="flex-1 py-2 text-center text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-2xs"
+                  >
+                    {authLabels.logout}
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a
+                    href={loginUrl}
+                    className="flex-1 py-2 text-center text-xs font-semibold text-neutral-900 bg-brand-200 hover:bg-brand-100 rounded-lg"
+                  >
+                    {authLabels.login}
+                  </a>
+                  <a
+                    href={registerUrl}
+                    className="flex-1 py-2 text-center text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-2xs"
+                  >
+                    {authLabels.signUp}
+                  </a>
+                </>
+              )}
             </div>
           </div>
         )}

@@ -444,7 +444,7 @@ export const QuickEstimator: React.FC<QuickEstimatorProps> = ({ language, locale
   const progressPercent = Math.round(((currentIndex + 1) / questions.length) * 100);
 
   return (
-    <div className="bg-white rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md overflow-hidden transition-all">
+    <div className="bg-[color:var(--color-neutral-50)] rounded-3xl border border-[color:var(--color-neutral-300)] shadow-md overflow-hidden transition-all">
       {/* Quiz Header Bar in Teacher Alex Brand Palette */}
       <div className="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 px-6 sm:px-8 py-6 text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

@@ -16,14 +16,16 @@ export function App() {
   const [currentLocale, setCurrentLocale] = useState<'ru' | 'en' | 'es'>('ru');
   const [quizLanguage, setQuizLanguage] = useState<TargetLanguage>('en');
   const [activeSection, setActiveSection] = useState<string>('quick-quiz');
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  // Load locale preference from URL query (e.g. nextInternalLocale from landing page), pathname, or localStorage
+  // 1. Load locale preference from URL query, pathname, or localStorage
   useEffect(() => {
     try {
       const searchParams = new URLSearchParams(window.location.search);
       const queryLocale = searchParams.get('nextInternalLocale') || searchParams.get('locale');
       if (queryLocale === 'ru' || queryLocale === 'en' || queryLocale === 'es') {
         setCurrentLocale(queryLocale);
+        localStorage.setItem('teacher_alex_locale', queryLocale);
         return;
       }
 
@@ -42,8 +44,34 @@ export function App() {
       const saved = localStorage.getItem('teacher_alex_locale');
       if (saved === 'ru' || saved === 'en' || saved === 'es') {
         setCurrentLocale(saved);
+        return;
       }
+
+      const browserLang = navigator.language.slice(0, 2);
+      if (browserLang === 'es') setCurrentLocale('es');
+      else if (browserLang === 'en') setCurrentLocale('en');
+      else setCurrentLocale('ru');
     } catch {}
+  }, []);
+
+  // 2. Check SSO session status against Teacher Alex Account Hub
+  useEffect(() => {
+    const checkSso = async () => {
+      try {
+        const res = await fetch('https://account.teacher-alex.com/api/auth/sso-status', {
+          method: 'GET',
+          credentials: 'include',
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setIsLoggedIn(Boolean(data?.isLoggedIn));
+        }
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+    checkSso();
   }, []);
 
   const handleLocaleChange = (loc: 'ru' | 'en' | 'es') => {
@@ -68,22 +96,22 @@ export function App() {
       suite: 'TEACHER ALEX LEARNING SUITE',
       titleEn: (
         <>
-          Оценка уровня <span className="text-brand-700">английского языка</span>
+          Оценка уровня <span className="text-brand-600">английского языка</span>
         </>
       ),
       titleEs: (
         <>
-          Оценка уровня <span className="text-brand-700">испанского языка</span>
+          Оценка уровня <span className="text-brand-600">испанского языка</span>
         </>
       ),
       titleDe: (
         <>
-          Оценка уровня <span className="text-brand-700">немецкого языка</span>
+          Оценка уровня <span className="text-brand-600">немецкого языка</span>
         </>
       ),
       titlePt: (
         <>
-          Оценка уровня <span className="text-brand-700">португальского языка</span>
+          Оценка уровня <span className="text-brand-600">португальского языка</span>
         </>
       ),
       subtitleEn:
@@ -102,22 +130,22 @@ export function App() {
       suite: 'TEACHER ALEX LEARNING SUITE',
       titleEn: (
         <>
-          Find Your Exact <span className="text-brand-700">English Level</span>
+          Find Your Exact <span className="text-brand-600">English Level</span>
         </>
       ),
       titleEs: (
         <>
-          Find Your Exact <span className="text-brand-700">Spanish Level</span>
+          Find Your Exact <span className="text-brand-600">Spanish Level</span>
         </>
       ),
       titleDe: (
         <>
-          Find Your Exact <span className="text-brand-700">German Level</span>
+          Find Your Exact <span className="text-brand-600">German Level</span>
         </>
       ),
       titlePt: (
         <>
-          Find Your Exact <span className="text-brand-700">Portuguese Level</span>
+          Find Your Exact <span className="text-brand-600">Portuguese Level</span>
         </>
       ),
       subtitleEn:
@@ -136,22 +164,22 @@ export function App() {
       suite: 'TEACHER ALEX LEARNING SUITE',
       titleEn: (
         <>
-          Evaluación de Nivel de <span className="text-brand-700">Inglés</span>
+          Evaluación de Nivel de <span className="text-brand-600">Inglés</span>
         </>
       ),
       titleEs: (
         <>
-          Descubre tu Nivel Exacto de <span className="text-brand-700">Español</span>
+          Descubre tu Nivel Exacto de <span className="text-brand-600">Español</span>
         </>
       ),
       titleDe: (
         <>
-          Descubre tu Nivel Exacto de <span className="text-brand-700">Alemán</span>
+          Descubre tu Nivel Exacto de <span className="text-brand-600">Alemán</span>
         </>
       ),
       titlePt: (
         <>
-          Descubre tu Nivel Exacto de <span className="text-brand-700">Portugués</span>
+          Descubre tu Nivel Exacto de <span className="text-brand-600">Portugués</span>
         </>
       ),
       subtitleEn:
@@ -169,11 +197,12 @@ export function App() {
   }[currentLocale];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[color:var(--color-brand-200)] text-neutral-900 antialiased font-sans">
+    <div className="flex flex-col min-h-screen bg-[color:var(--color-brand-200)] text-[color:var(--color-text-primary)] antialiased font-sans">
       {/* 1. Official Header matching teacher-alex.com */}
       <Header
         currentLocale={currentLocale}
         onLocaleChange={handleLocaleChange}
+        isLoggedIn={isLoggedIn}
       />
 
       {/* 2. Top-Level Language Switcher Tabs */}
@@ -185,10 +214,10 @@ export function App() {
         currentLocale={currentLocale}
       />
 
-      {/* Hero Headline */}
-      <section className="pt-8 pb-4 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-100 text-brand-900 text-xs font-bold tracking-wide uppercase shadow-2xs">
+      {/* 3. Ergonomic Hero Banner inside Low-Glare Card Surface */}
+      <section className="pt-6 pb-2 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div className="bg-[color:var(--color-neutral-50)] rounded-3xl border border-[color:var(--color-neutral-300)] shadow-sm px-6 py-8 sm:p-10 text-center space-y-3">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-bold tracking-wide uppercase">
             {heroContent.suite}
           </span>
 
@@ -199,7 +228,7 @@ export function App() {
             {quizLanguage === 'pt' && heroContent.titlePt}
           </h1>
 
-          <p className="text-sm sm:text-base text-neutral-800 leading-relaxed font-normal">
+          <p className="text-base text-[color:var(--color-text-secondary)] max-w-2xl mx-auto leading-relaxed font-normal">
             {quizLanguage === 'en' && heroContent.subtitleEn}
             {quizLanguage === 'es' && heroContent.subtitleEs}
             {quizLanguage === 'de' && heroContent.subtitleDe}
@@ -207,15 +236,15 @@ export function App() {
           </p>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5 text-xs font-semibold text-neutral-800">
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 border border-brand-300 shadow-2xs">
+            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-neutral-100 border border-neutral-300">
               <Zap className="w-3.5 h-3.5 text-amber-600" />
               {heroContent.badgePrivate}
             </span>
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 border border-brand-300 shadow-2xs">
+            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-neutral-100 border border-neutral-300">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
               {heroContent.badgeStandard}
             </span>
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 border border-brand-300 shadow-2xs">
+            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-neutral-100 border border-neutral-300">
               <Clock className="w-3.5 h-3.5 text-brand-700" />
               {heroContent.badgeTime}
             </span>
@@ -241,8 +270,8 @@ export function App() {
         </section>
       </main>
 
-      {/* 3. Official Footer matching teacher-alex.com */}
-      <Footer />
+      {/* 4. Official Localized Footer */}
+      <Footer locale={currentLocale} />
     </div>
   );
 }

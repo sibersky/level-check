@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
-@theme {
-  /* Font Family Stack matching Teacher Alex & Next.js ecosystem */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --default-font-family: var(--font-sans);
+:root {
+  /* --- Typography --- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Literata', Georgia, Cambria, serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Color Palette - Brand */
+  /* --- Brand (Deep Navy / Academic Indigo) --- */
   --color-brand-50: #eef0f7;
   --color-brand-100: #d4d9ec;
-  --color-brand-200: #b0b8dc;
-  --color-brand-300: #8894cb;
+  --color-brand-200: #b0b8dc; /* Outer App Shell Background */
+  --color-brand-300: #8894cb; /* Header & Footer Background */
   --color-brand-400: #6674ba;
   --color-brand-500: #4a57a9;
-  --color-brand-600: #1a2e6d;
+  --color-brand-600: #1a2e6d; /* Primary Accent / Strong Buttons */
   --color-brand-700: #162456;
   --color-brand-800: #121c40;
-  --color-brand-900: #0e1429;
+  --color-brand-900: #0e1429; /* Heading / Dark Brand Text */
 
-  /* Color Palette - Accent */
+  /* --- Accent (Teal / Highlighting) --- */
   --color-accent-50: #edfafa;
   --color-accent-100: #d5f0f0;
   --color-accent-200: #afe1e2;
@@ -31,33 +31,88 @@
   --color-accent-800: #214f53;
   --color-accent-900: #193438;
 
-  /* Color Palette - Neutral */
-  --color-neutral-50: #f9fafb;
-  --color-neutral-100: #f0f2f5;
-  --color-neutral-200: #e2e6ec;
-  --color-neutral-300: #d1d7e0;
+  /* --- Neutral (Soft Slate / Low-Glare Surfaces) --- */
+  --color-neutral-50: #f9fafb;  /* Primary Reading & Card Surface */
+  --color-neutral-100: #f0f2f5; /* Secondary / Recessed Surface Fill */
+  --color-neutral-200: #e2e6ec; /* Light Divider */
+  --color-neutral-300: #d1d7e0; /* Border Primary */
   --color-neutral-400: #b0b9c6;
-  --color-neutral-500: #8c99ab;
-  --color-neutral-600: #6b7a8d;
-  --color-neutral-700: #4d5c6f;
-  --color-neutral-800: #364152;
-  --color-neutral-900: #1f2937;
+  --color-neutral-500: #64748b; /* Muted Text (WCAG AA compliant) */
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155; /* Body Text Secondary */
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a; /* Body Text Primary (Deep Slate) */
 
-  /* Semantic Mappings */
+  /* --- Semantic Mappings --- */
+  --color-surface-card: var(--color-neutral-50);
+  --color-surface-subtle: var(--color-neutral-100);
   --color-text-primary: var(--color-neutral-900);
   --color-text-secondary: var(--color-neutral-700);
   --color-text-muted: var(--color-neutral-500);
   --color-text-brand: var(--color-brand-600);
+  --color-text-accent: var(--color-accent-600);
 
   --color-border-primary: var(--color-neutral-300);
   --color-border-secondary: var(--color-neutral-200);
   --color-border-brand: var(--color-brand-500);
 }
 
+@theme {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+  --default-font-family: var(--font-sans);
+
+  --color-brand-50: var(--color-brand-50);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-800: var(--color-brand-800);
+  --color-brand-900: var(--color-brand-900);
+
+  --color-accent-50: var(--color-accent-50);
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
+
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-brand: var(--color-text-brand);
+  --color-text-accent: var(--color-text-accent);
+
+  --color-border-primary: var(--color-border-primary);
+  --color-border-secondary: var(--color-border-secondary);
+  --color-border-brand: var(--color-border-brand);
+}
+
 body {
   background-color: var(--color-brand-200);
   color: var(--color-neutral-900);
   font-family: var(--font-sans);
+  line-height: 1.65;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

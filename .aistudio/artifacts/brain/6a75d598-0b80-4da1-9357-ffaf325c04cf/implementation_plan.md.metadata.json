@@ -1,6 +1,0 @@
-{
-  "summary":  "Implementation plan for accelerating the Poke-Me-On Telegram experience using a Hybrid Architecture: optimizing inline chat buttons for <100ms response time and introducing a native Telegram Mini App for zero-latency deep study sessions.",
-  "updatedAt":  "2026-10-24T20:06:45.969711258Z",
-  "requestFeedback":  true,
-  "userFacing":  true
-}
